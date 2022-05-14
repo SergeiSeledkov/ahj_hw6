@@ -1,0 +1,165 @@
+body {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+
+	background-color: #107abb;
+}
+
+.table {
+	display: flex;
+	align-items: flex-start;
+
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+.table-container {
+	width: 33.3%;
+}
+
+.table-col {
+	padding: 10px;
+	margin: 5px;
+
+	background-color: #dee2e5;
+	border-radius: 3px;
+}
+
+.table-col__description {
+	display: block;
+	margin-bottom: 10px;
+
+	color: #1e3c4d;
+	font-weight: bold;
+	font-size: 14px;
+}
+
+.table-col__one {
+	margin-right: 2.5px;
+}
+
+.table-col__two {
+	margin-left: 2.5px;
+	margin-right: 2.5px;
+}
+
+.table-col__three {
+	margin-left: 2.5px;
+}
+
+.table-card {
+	margin-bottom: 10px;
+	position: relative;
+
+	background-color: #fff;
+	border-radius: 3px;
+	box-shadow: 0px 1px 1px 0.5px rgba(0, 0, 0, 0.35);
+	cursor: url('../img/grabbing.png'), default;
+}
+
+.table-card__title {
+	display: block;
+	padding: 10px;
+	position: relative;
+
+	font-size: 14px;
+	font-weight: normal;
+	word-wrap: break-word;
+	pointer-events: none;
+}
+
+.table-card__title__after {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.table-card__title__after::after {
+	content: '\2717';
+
+	font-size: 20px;
+	line-height: 20px;
+	font-weight: bold;
+	color: rgba(217, 6, 6, 0.85);
+}
+
+.table-add__button {
+	background-color: inherit;
+	border: 0;
+	color: #6b7f8a;
+	font-size: 14px;
+}
+
+.table-add__text {
+	display: block;
+  width: 100%;
+	min-height: 75px;
+  box-sizing: border-box;
+	padding: 10px;
+	margin-bottom: 10px;
+
+	border: 0;
+	border-radius: 3px;
+	resize: none;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	box-shadow: 0px 1px 1px 0.5px rgba(0, 0, 0, 0.35);
+}
+
+.table-add__text:focus-visible {
+	outline: 0;
+}
+
+.table-add__container__button {
+	display: flex;
+  justify-content: space-between;
+}
+
+.table-add__send {
+	padding: 8px;
+
+	background-color: #5ca84d;
+	color: #fff;
+	border: 0;
+	border-radius: 3px;
+	font-size: 14px;
+  font-weight: bold;
+	box-shadow: 0px 1px 0px 0.5px rgba(0, 0, 0, 0.7);
+}
+
+.table-add__close {
+	padding: 0;
+
+	border: 0;
+	background-color: inherit;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.table-add__close::after {
+	content: '\2717';
+}
+
+.hidden {
+	display: none;
+}
+
+.dragged {
+	position: absolute;
+	z-index: 1000;
+
+	pointer-events: none;
+	font-family: Arial,Helvetica,sans-serif;
+}
+
+.preview {
+	margin-bottom: 10px;
+
+	background-color: #d5dbde;
+  border-radius: 3px;
+}
+
+.draggerEl {
+	background-color: #d5dbde;
+  box-shadow: none;
+}
