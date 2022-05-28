@@ -21,6 +21,7 @@ function addMoveEvent() {
   let ghostEl = null;
   let startX = 0;
   let elementTop = 0;
+  let savedItem = null;
 
   preview.classList.add('preview');
 
@@ -43,12 +44,14 @@ function addMoveEvent() {
     draggedEl.classList.add('draggerEl');
     draggedEl.style.width = `${e.target.clientWidth}px`;
     draggedEl.style.height = `${e.target.clientHeight}px`;
-    draggedEl.querySelector('.table-card__title').remove();
+    savedItem = draggedEl.querySelector('.table-card__title');
+    savedItem.remove();
     ghostEl.querySelector('.table-card__title__after').remove();
     startX = e.clientX;
     ghostEl.style.left = `${e.target.offsetLeft}px`;
     ghostEl.style.top = `${e.target.offsetTop}px`;
     document.body.appendChild(ghostEl);
+    document.body.classList.add('cursor');
   });
 
   document.addEventListener('mousemove', (e) => {
@@ -76,6 +79,12 @@ function addMoveEvent() {
         changingItem.before(preview);
       }
     }
+
+    if (changingItem.classList.contains('table-col') || changingItem.classList.contains('table-col__description')) {
+      if (changingItem.querySelector('.table-col__description') !== null) {
+        changingItem.querySelector('.table-col__description').after(preview);
+      }
+    }
   });
 
   document.addEventListener('mouseup', (e) => {
@@ -90,18 +99,26 @@ function addMoveEvent() {
     const columnDragged = draggedEl.closest('.table-col');
     const columnGhost = preview.closest('.table-col');
 
-    draggedEl.remove();
-    preview.after(ghostEl);
-    ghostEl.style.top = '';
-    ghostEl.style.left = '';
-    ghostEl.style.width = '';
-    ghostEl.style.height = '';
-    ghostEl.classList.remove('dragged');
-    preview.remove();
-    removeCard.addRemoveEvent();
+    if (columnGhost !== null) {
+      draggedEl.remove();
+      preview.after(ghostEl);
+      ghostEl.style.top = '';
+      ghostEl.style.left = '';
+      ghostEl.style.width = '';
+      ghostEl.style.height = '';
+      ghostEl.classList.remove('dragged');
+      preview.remove();
+      removeCard.addRemoveEvent();
+      addCard.saveCardAfterMove(columnDragged, columnGhost);
+    } else {
+      draggedEl.classList.remove('draggerEl');
+      draggedEl.prepend(savedItem);
+      ghostEl.remove();
+    }
+
     ghostEl = null;
     draggedEl = null;
-    addCard.saveCardAfterMove(columnDragged, columnGhost);
+    document.body.classList.remove('cursor');
   });
 }
 
